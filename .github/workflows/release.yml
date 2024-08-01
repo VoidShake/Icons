@@ -37,6 +37,7 @@ jobs:
 
          - uses: actions/cache@v4
            name: Setup icons cache
+           id: cache
            with:
               path: generated
               key: icons-${{ hashFiles('.gitmodules') }}
@@ -44,6 +45,7 @@ jobs:
                  icons-
 
          - name: Generate Data
+           if: steps.cache.outputs.cache-hit != 'true'
            run: pnpm run gen
 
          - name: Upload generated data as artifact
@@ -92,6 +94,7 @@ jobs:
          - name: Build and push Docker image
            uses: docker/build-push-action@v6
            with:
+              context: '{{defaultContext}}:mysubdir'
               push: true
               tags: ${{ steps.meta.outputs.tags }}
               labels: ${{ steps.meta.outputs.labels }}
