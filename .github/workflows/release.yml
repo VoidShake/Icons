@@ -1,0 +1,95 @@
+name: Deploy Website
+on:
+   workflow_dispatch:
+
+env:
+   REGISTRY: ghcr.io
+   GITHUB_REPO: ${{ github.repository }}
+
+jobs:
+   datagen:
+      runs-on: windows-2022
+      permissions:
+         contents: read
+         packages: read
+
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v4
+           with:
+              submodules: true
+
+         - name: Install pnpm
+           uses: pnpm/action-setup@v4
+           with:
+              run_install: false
+
+         - name: Install Node.js
+           uses: actions/setup-node@v4
+           with:
+              node-version: 22
+              cache: 'pnpm'
+
+         - name: Install dependencies
+           run: pnpm install --frozen-lockfile --strict-peer-dependencies
+           env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+         - uses: actions/cache@v4
+           name: Setup icons cache
+           with:
+              path: generated
+              key: ${{ runner.os }}-icons-${{ hashFiles('.gitmodules') }}
+              restore-keys: |
+                 ${{ runner.os }}-icons-
+
+         - name: Generate Data
+           run: pnpm run gen
+
+         - name: Upload generated data as artifact
+           uses: actions/upload-artifact@v4
+           with:
+              retention-days: 1
+              name: generated-data
+              path: generated
+
+   docker:
+      runs-on: ubuntu-latest
+      needs: datagen
+      permissions:
+         contents: read
+         packages: write
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v3
+
+         - name: Download generated data from artifact
+           uses: actions/download-artifact@v4
+           with:
+              name: generated-data
+              path: .
+
+         - name: Log in to the Container registry
+           uses: docker/login-action@v3
+           with:
+              registry: ${{ env.REGISTRY }}
+              username: ${{ github.actor }}
+              password: ${{ secrets.GITHUB_TOKEN }}
+
+         - name: Extract metadata (tags, labels) for Docker
+           id: meta
+           uses: docker/metadata-action@v4
+           with:
+              images: ${{ env.REGISTRY }}/${{ env.GITHUB_REPO }}
+              tags: |
+                 type=raw,value=latest
+                 type=raw,value=stable,enable=${{ github.event_name == 'release' }}
+                 type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
+                 type=sha,priority=250,enable=${{ github.event_name == 'workflow_dispatch' }}
+
+         - name: Build and push Docker image
+           uses: docker/build-push-action@v3
+           with:
+              push: true
+              tags: ${{ steps.meta.outputs.tags }}
+              labels: ${{ steps.meta.outputs.labels }}
