@@ -1,6 +1,6 @@
 services:
    serve:
-      image: ghcr.io/voidshake/packwiz-serve:latest
+      image: ghcr.io/voidshake/packwiz-serve:latest-windows
       volumes:
          - ./pack:/data
       ports:
