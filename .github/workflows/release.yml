@@ -71,11 +71,6 @@ jobs:
               name: generated-data
               path: generated
 
-         - run: ls /
-         - run: ls
-         - run: ls generated
-         - run: ls generated/generated
-
          - name: Log in to the Container registry
            uses: docker/login-action@v3
            with:
