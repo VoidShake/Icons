@@ -136,3 +136,4 @@ resources/*.jar
 resources/*.zip
 
 generated
+install
