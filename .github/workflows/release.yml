@@ -39,9 +39,9 @@ jobs:
            name: Setup icons cache
            with:
               path: generated
-              key: ${{ runner.os }}-icons-${{ hashFiles('.gitmodules') }}
+              key: icons-${{ hashFiles('.gitmodules') }}
               restore-keys: |
-                 ${{ runner.os }}-icons-
+                 icons-
 
          - name: Generate Data
            run: pnpm run gen
@@ -67,7 +67,7 @@ jobs:
            uses: actions/download-artifact@v4
            with:
               name: generated-data
-              path: .
+              path: generated
 
          - name: Log in to the Container registry
            uses: docker/login-action@v3
