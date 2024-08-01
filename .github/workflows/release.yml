@@ -35,20 +35,21 @@ jobs:
            env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-         - name: Install modpack
-           uses: isbang/compose-action@v2.0.1
-           with:
-              compose-file: docker-compose.install.yml
-              up-flags: --abort-on-container-exit
-
          - uses: actions/cache@v4
            name: Setup icons cache
            id: cache
            with:
               path: generated
-              key: icons-${{ hashFiles('.gitmodules') }}
+              key: icons-${{ hashFiles('.gitmodules', 'pack/index.toml') }}
               restore-keys: |
                  icons-
+
+         - name: Install modpack
+           if: steps.cache.outputs.cache-hit != 'true'
+           uses: isbang/compose-action@v2.0.1
+           with:
+              compose-file: docker-compose.install.yml
+              up-flags: --abort-on-container-exit
 
          - name: Generate Data
            if: steps.cache.outputs.cache-hit != 'true'
