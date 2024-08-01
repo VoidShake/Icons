@@ -1,16 +1,18 @@
-version: '3.8'
-
 services:
    serve:
-      image: getchoo/packwiz-serve:latest
+      image: ghcr.io/voidshake/packwiz-serve:latest
       volumes:
          - ./pack:/data
+      ports:
+         - 8088:80
 
    install:
       image: itzg/minecraft-server:latest
       environment:
          EULA: 'TRUE'
          SETUP_ONLY: 'TRUE'
-         PACKWIZ_URL: http://serve:8080/pack.toml
+         PACKWIZ_URL: http://serve/pack.toml
       volumes:
          - ./install:/data
+      depends_on:
+         - serve
