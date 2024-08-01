@@ -1,0 +1,10 @@
+name = "Arva"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "5a8f9cdac03943355f4d151be0d9768f29edcfcb756e166f1b06d0d765f171a9"
+
+[versions]
+minecraft = "1.20.1"
