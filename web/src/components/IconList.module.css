@@ -1,22 +1,11 @@
 ul {
    list-style: none;
    display: grid;
-   grid-template-columns: repeat(auto-fit, 200px);
+   grid-template-columns: repeat(auto-fit, 12em);
+   gap: 1em;
+}
 
-   li {
-      text-align: center;
-
-      p {
-         margin: 0;
-      }
-
-      small {
-         opacity: 0.75;
-      }
-
-      img {
-         width: 100%;
-         aspect-ratio: 1 / 1;
-      }
-   }
+input[type='text'] {
+   width: 400px;
+   max-width: 100%;
 }

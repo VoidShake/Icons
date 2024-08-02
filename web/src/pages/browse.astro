@@ -1,13 +1,17 @@
 ---
 import { readdirSync, statSync } from 'fs';
 import { join, parse } from 'path';
-import Layout from '../layouts/Layout.astro';
 import IconList from '../components/IconList.tsx';
-import type Icon from '../types/Icon.ts';
+import Layout from '../layouts/Layout.astro';
+import type { Icon } from '../types/Icon.ts';
 
 const baseDir = 'public/icons'
 const namespaces = readdirSync(baseDir)
    .filter(it => statSync(join(baseDir, it)).isDirectory())
+   .toSorted((it) => {
+      if(it === 'minecraft') return -1
+      return 0;
+   })
 
 const icons = namespaces.flatMap(namespace => {
    const files = readdirSync(join(baseDir, namespace))
@@ -20,7 +24,9 @@ const icons = namespaces.flatMap(namespace => {
 ---
 
 <Layout title="Minecraft Icons">
-	<IconList client:load icons={icons}>
+   <main>
+	   <IconList client:load icons={icons}></IconList>
+   </main>
 </Layout>
 
 <style>

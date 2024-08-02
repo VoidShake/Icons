@@ -11,6 +11,7 @@
    },
    "dependencies": {
       "@astrojs/check": "^0.9.1",
+      "@types/node": "^17.0.45",
       "@astrojs/react": "^3.6.1",
       "@types/react": "^18.3.3",
       "@types/react-dom": "^18.3.0",

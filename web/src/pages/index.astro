@@ -13,19 +13,45 @@ const exampleUrls = examples.map(it => `/icons/${it}.png`)
 ---
 
 <Layout title="Minecraft Icons">
-	<p><b>This website serves icons of minecraft blocks & items that have been generated using its assets</b></p>
-	<p>Try requesting an icons using the following path template:</p>
-	<code>/assets/icons/[namespace]/[id].png</code>
-	<p>For example:</p>
-	<ul>
-		{exampleUrls.map(url => 
-			<li><a href={url}>{url}</a></li>
-		)}
-	</ul>
+	<main>
+		<h1>Minecraft Icons</h1>
+		<p>This website serves icons of minecraft blocks & items that have been generated using its assets.</p>
+		<p>Try requesting an icons using the following path template:</p>
+		<code>/assets/icons/[namespace]/[id].png</code>
+		<p>For example:</p>
+		<ul>
+			{exampleUrls.map(url => 
+				<li><a href={url}>{url}</a></li>
+			)}
+		</ul>
+
+		<a href="/browse">
+			<button>
+				See all available icons
+			</button>
+		</a>
+	</main>
 </Layout>
 
 <style>
+	main {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
 	li:not(:last-child) {
 		margin-bottom: 0.5em;
+	}
+
+	button {
+		background: var(--accent);
+
+		margin-top: 1rem;
+		margin-left: 3em;
+
+		&:hover {
+			background: var(--accent-light);
+			color: black;
+		}
 	}
 </style>
