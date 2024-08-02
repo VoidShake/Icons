@@ -44,13 +44,6 @@ jobs:
               restore-keys: |
                  icons-
 
-         - name: Install modpack
-           if: steps.cache.outputs.cache-hit != 'true'
-           uses: isbang/compose-action@v2.0.1
-           with:
-              compose-file: docker-compose.install.yml
-              up-flags: --abort-on-container-exit
-
          - name: Generate Data
            if: steps.cache.outputs.cache-hit != 'true'
            run: pnpm run gen

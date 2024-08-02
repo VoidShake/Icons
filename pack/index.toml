@@ -1,11 +1,81 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/atmospheric.pw.toml"
+hash = "97385908aa948085c8b7c9ace6e42de7331359d1ad30fc8954918c65652a1259"
+metafile = true
+
+[[files]]
+file = "mods/autumnity.pw.toml"
+hash = "ad9187e9de71c0259c492269a0bdf2959c98a86822bd8575678172620fabd0dd"
+metafile = true
+
+[[files]]
+file = "mods/biomes-o-plenty.pw.toml"
+hash = "33e828c63a098d971fb2b98cfa0f90bf96337d3a254afdc863463f4d62b57781"
+metafile = true
+
+[[files]]
+file = "mods/botania.pw.toml"
+hash = "a7fb9500cabe1be704a1a9ddac2ed1bd218e67dfcff21ae1f6c02142c8cd836f"
+metafile = true
+
+[[files]]
+file = "mods/compatoplenty.pw.toml"
+hash = "2a693955b7a91e8d3d666d80dcd5d4df465aa94025723c31146d7dec6c0e9c9a"
+metafile = true
+
+[[files]]
+file = "mods/create.pw.toml"
+hash = "c464b21ac8baf5ed1d22a0c4bacfcf24977e04dc938add65a2a93bcaf704c22e"
+metafile = true
+
+[[files]]
+file = "mods/ecologics.pw.toml"
+hash = "2c947159a3c1922d90420fabce6c228b8cf6663498f7ffe592ac025e069730c5"
+metafile = true
+
+[[files]]
+file = "mods/endergetic.pw.toml"
+hash = "e2bf3badfe12453a5c312b1067b9087d51c2aa1f9a10f773227c4b4dd8ed2e59"
+metafile = true
+
+[[files]]
 file = "mods/environmental.pw.toml"
 hash = "be95d31d53d261e6ab79defd7eebe5e47e31a0f93bd77977de704bc050488c32"
 metafile = true
 
 [[files]]
+file = "mods/galosphere.pw.toml"
+hash = "d0fe7e7d3d01d6cb3c77c7378cde51834ddb3a42da84e84ba2adc2716006db1b"
+metafile = true
+
+[[files]]
+file = "mods/neapolitan.pw.toml"
+hash = "d01255f11201634a26e318142a28fe47705388c27d2c44e0bc3fd69593870a00"
+metafile = true
+
+[[files]]
 file = "mods/quark.pw.toml"
 hash = "85ecd63591604cd9e9dc2e33b9fefb07c8bceed4cc39b19c13caff6233818397"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "1e6efbcc9bc0653d549548285eadab162435855b484fd4846adc2c38fade5aba"
+metafile = true
+
+[[files]]
+file = "mods/the-twilight-forest.pw.toml"
+hash = "d1f859de9867b7433305aef1631aa22a436a4c3924474a21c0a22ab5f2093c04"
+metafile = true
+
+[[files]]
+file = "mods/thermal-foundation.pw.toml"
+hash = "1fcb1bf91f4979cce47e56392cf9e3d30806bc0ff8aedc92b461272ecac8f8ca"
+metafile = true
+
+[[files]]
+file = "mods/upgrade-aquatic.pw.toml"
+hash = "427a4ac2edeca19b458978f01611b2be1179e325b609e3d56241f97c8415a789"
 metafile = true

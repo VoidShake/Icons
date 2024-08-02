@@ -6,8 +6,8 @@
    "packageManager": "pnpm@9.6.0",
    "main": "./dist/main.js",
    "scripts": {
-      "gen": "node src/main.mjs",
-      "fetch": "node src/install.mjs",
+      "gen": "pnpm run fetch && node src/main.mjs",
+      "fetch": "node src/install.mjs ./pack ./install",
       "lint": "eslint {src,test}/**/*.ts"
    },
    "repository": {

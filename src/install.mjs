@@ -1,14 +1,34 @@
-import { createWriteStream, existsSync, mkdirSync, readFileSync, statSync } from 'fs'
+import { createHash } from 'crypto'
+import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, statSync } from 'fs'
 import { dirname, join } from 'path'
 import { Readable } from 'stream'
 import { parse } from 'toml'
 
-function readToml(path) {
-   return parse(readFileSync(path).toString())
+function readToml(path, missingMessage = `Unable to locate ${path}`) {
+   if (!existsSync(path)) throw new Error(missingMessage)
+   const content = readFileSync(path).toString()
+   return parse(content)
+}
+function verifyFileSha(file, checksum) {
+   const content = readFileSync(file)
+   return verifySha(file, content, checksum)
 }
 
-async function installPack(from, to) {
+function verifySha(name, content, checksum) {
+   const shasum = createHash('sha1')
+   shasum.update(content)
+   if (shasum.digest('hex') !== checksum) {
+      throw new Error(`checksum does not match for ${name}`)
+   }
+}
+
+async function installPack(from, to, options) {
+   if (!from) throw new Error('input argument missing')
+   if (!to) throw new Error('output argument missing')
+
    if (!existsSync(from)) throw new Error(`Path at ${from} does not exist`)
+
+   if (options.includes('--clean')) rmSync(to, { recursive: true, force: true })
 
    const packFile = statSync(from).isDirectory() ? join(from, 'pack.toml') : from
 
@@ -19,39 +39,42 @@ async function installPack(from, to) {
 
    const packDir = dirname(packFile)
 
-   const indexFile = join(packDir, pack.index.file)
-   if (!existsSync(indexFile)) throw new Error(`Unable to locate ${indexFile}`)
-
-   const index = readToml(indexFile)
+   const index = readToml(join(packDir, pack.index.file))
 
    await Promise.all(
       index.files.map(async ({ file }) => {
-         const resolvedFile = join(packDir, file)
-         if (!existsSync(resolvedFile)) throw new Error(`Unable to locate ${resolvedFile}`)
-         const definition = readToml(resolvedFile)
+         const definition = readToml(join(packDir, file))
 
          console.log(`   downloading ${definition.filename}...`)
 
          const outPath = join(to, dirname(file), definition.filename)
 
-         if (!existsSync(dirname(outPath))) mkdirSync(dirname(outPath), { recursive: true })
+         if (!existsSync(outPath) || options.includes('--overwrite')) {
+            if (!existsSync(dirname(outPath))) mkdirSync(dirname(outPath), { recursive: true })
 
-         const out = createWriteStream(outPath)
-         const response = await fetch(definition.download.url)
+            const out = createWriteStream(outPath)
+            const response = await fetch(definition.download.url)
 
-         return new Promise((res, rej) => {
-            const readable = Readable.fromWeb(response.body)
-            readable.pipe(out)
-            readable.on('error', rej)
-            readable.on('finish', res)
-         })
+            await new Promise((res, rej) => {
+               const readable = Readable.fromWeb(response.body)
+               readable.pipe(out)
+               readable.on('error', rej)
+               readable.on('end', res)
+            })
+         } else {
+            console.log(`   using cached file for ${outPath}`)
+         }
+
+         verifyFileSha(outPath, definition.download.hash)
       })
    )
 }
 
-const [, , from, to] = process.argv
+const args = process.argv.slice(2)
+const options = args.filter(it => it.startsWith('-'))
+const [from, to] = args.filter(it => !it.startsWith('-'))
 
-installPack(from, to).catch(e => {
+installPack(from, to, options).catch(e => {
    console.error(e)
    process.exit(1)
 })
