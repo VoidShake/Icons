@@ -1,6 +1,11 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/environmental.pw.toml"
+hash = "be95d31d53d261e6ab79defd7eebe5e47e31a0f93bd77977de704bc050488c32"
+metafile = true
+
+[[files]]
 file = "mods/quark.pw.toml"
 hash = "85ecd63591604cd9e9dc2e33b9fefb07c8bceed4cc39b19c13caff6233818397"
 metafile = true
