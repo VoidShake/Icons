@@ -135,5 +135,4 @@ dist
 resources/*.jar
 resources/*.zip
 
-generated
 install

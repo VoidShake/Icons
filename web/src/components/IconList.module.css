@@ -1,0 +1,22 @@
+ul {
+   list-style: none;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 200px);
+
+   li {
+      text-align: center;
+
+      p {
+         margin: 0;
+      }
+
+      small {
+         opacity: 0.75;
+      }
+
+      img {
+         width: 100%;
+         aspect-ratio: 1 / 1;
+      }
+   }
+}
