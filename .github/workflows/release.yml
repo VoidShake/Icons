@@ -47,6 +47,8 @@ jobs:
          - name: Generate Data
            if: steps.cache.outputs.cache-hit != 'true'
            run: pnpm run gen
+           env:
+              CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
          - name: Upload generated data as artifact
            uses: actions/upload-artifact@v4
