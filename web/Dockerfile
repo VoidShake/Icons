@@ -9,7 +9,7 @@ COPY . .
 
 FROM base AS builder
 RUN pnpm --filter icons-web --prod deploy pruned
-#RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN mv web/public/icons pruned/public/icons
 
 WORKDIR pruned
 RUN pnpm run build
