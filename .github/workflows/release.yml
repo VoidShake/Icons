@@ -93,6 +93,10 @@ jobs:
                  type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
                  type=sha,priority=250,enable=${{ github.event_name == 'workflow_dispatch' }}
 
+         - run: ls web
+         - run: ls web/public
+         - run: ls web/public/icons
+
          - name: Build and push Docker image
            uses: docker/build-push-action@v6
            with:
