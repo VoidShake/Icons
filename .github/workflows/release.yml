@@ -1,6 +1,10 @@
 name: Build Website
 on:
    workflow_dispatch:
+   push:
+      paths:
+         - .gitmodules
+         - pack/index.toml
 
 env:
    REGISTRY: ghcr.io
@@ -91,7 +95,7 @@ jobs:
                  type=raw,value=latest
                  type=raw,value=stable,enable=${{ github.event_name == 'release' }}
                  type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
-                 type=sha,priority=250,enable=${{ github.event_name == 'workflow_dispatch' }}
+                 type=sha,priority=250,enable=${{ github.event_name != 'release' }}
 
          - name: Build and push Docker image
            uses: docker/build-push-action@v6
