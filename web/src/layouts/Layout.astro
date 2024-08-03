@@ -1,0 +1,92 @@
+---
+type Props = {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: rgba(136, 58, 234);
+		--accent-light: rgba(224, 204, 250);
+		--accent-dark: rgba(49, 10, 101);
+		--bg: #13151a;
+		--bg-light: rgb(67, 73, 85);
+		--text: #ebebeb;
+	}
+
+	html {
+		font-family: system-ui, sans-serif;
+		background: var(--bg);
+		color: var(--text);
+	}
+
+	body {
+		margin: 1em;
+	}
+
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+
+		background: var(--bg-light);
+		padding: 1em;
+		border-radius: 0.5em;
+		margin: 1em 0;
+
+		display: inline-block;
+	}
+
+	a {
+		color: var(--accent);
+
+		&:not(:hover) {
+			text-decoration: none;
+		}
+	}
+
+	button, input {
+		padding: 1em;
+		border: none;
+		outline: none;
+		
+		border-radius: 0.2em;
+		
+		background: var(--bg-light);
+   	color: var(--text);
+
+		outline: solid 0px var(--accent);
+
+		transition: outline 0.1s ease, background 0.1s ease,m ;
+
+		&:focus-visible {
+			outline-width: 2px;
+		}
+	}
+
+	button {
+		cursor: pointer;
+	}
+</style>

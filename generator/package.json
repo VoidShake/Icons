@@ -1,0 +1,34 @@
+{
+   "name": "icons-generator",
+   "version": "0.0.0-dev",
+   "description": "Icons",
+   "type": "module",
+   "main": "./dist/main.js",
+   "scripts": {
+      "gen": "pnpm run fetch && node src/main.mjs",
+      "fetch": "node src/install.mjs ../pack ../install",
+      "lint": "eslint {src,test}/**/*.ts"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/PssbleTrngle/PackResolver.git"
+   },
+   "publishConfig": {
+      "registry": "https://npm.pkg.github.com"
+   },
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/PssbleTrngle/PackResolver/issues"
+   },
+   "homepage": "https://github.com/PssbleTrngle/PackResolver#readme",
+   "dependencies": {
+      "@pssbletrngle/assets-renderer": "^1.3.2",
+      "toml": "^3.0.0"
+   },
+   "devDependencies": {
+      "@types/node": "^17.0.45",
+      "eslint": "^8.23.0",
+      "eslint-plugin-require-extensions": "^0.1.3",
+      "prettier": "^2.7.1"
+   }
+}

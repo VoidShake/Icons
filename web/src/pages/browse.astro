@@ -1,0 +1,37 @@
+---
+import { readdirSync, statSync } from 'fs';
+import { join, parse, resolve } from 'path';
+import IconList from '../components/IconList.tsx';
+import Layout from '../layouts/Layout.astro';
+import type { Icon } from '../types/Icon.ts';
+
+const baseDir = resolve('public/icons')
+
+const namespaces = readdirSync(baseDir)
+   .filter(it => statSync(join(baseDir, it)).isDirectory())
+   .toSorted((it) => {
+      if(it === 'minecraft') return -1
+      return 0;
+   })
+
+const icons = namespaces.flatMap(namespace => {
+   const files = readdirSync(join(baseDir, namespace))
+   return files.map<Icon>(file => {
+      const id = parse(file).name
+      const url = `/icons/${namespace}/${file}`
+      return {namespace, id, url}
+   })
+})
+---
+
+<Layout title="Minecraft Icons">
+   <main>
+	   <IconList client:load icons={icons}></IconList>
+   </main>
+</Layout>
+
+<style>
+	li:not(:last-child) {
+		margin-bottom: 0.5em;
+	}
+</style>

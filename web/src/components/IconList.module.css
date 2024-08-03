@@ -1,0 +1,11 @@
+ul {
+   list-style: none;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 12em);
+   gap: 1em;
+}
+
+input[type='text'] {
+   width: 400px;
+   max-width: 100%;
+}
