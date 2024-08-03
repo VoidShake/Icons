@@ -1,6 +1,21 @@
 hash-format = "sha256"
 
 [[files]]
+file = "mods/ad-astra.pw.toml"
+hash = "bf478af7ae31e03fd5029f622c1ebb764466442f1902b7be2cba3ab040811b52"
+metafile = true
+
+[[files]]
+file = "mods/aether.pw.toml"
+hash = "801f5f50e8f6022f58e6ff62198958a81924ef6058f52ae6d115952311c5ac6d"
+metafile = true
+
+[[files]]
+file = "mods/alexs-caves.pw.toml"
+hash = "ec436a1f3378f8bd08ccd02e0ee74c441ff51d73bb62d446f6123eb2d6ebed6b"
+metafile = true
+
+[[files]]
 file = "mods/atmospheric.pw.toml"
 hash = "97385908aa948085c8b7c9ace6e42de7331359d1ad30fc8954918c65652a1259"
 metafile = true
@@ -18,6 +33,11 @@ metafile = true
 [[files]]
 file = "mods/botania.pw.toml"
 hash = "a7fb9500cabe1be704a1a9ddac2ed1bd218e67dfcff21ae1f6c02142c8cd836f"
+metafile = true
+
+[[files]]
+file = "mods/botarium.pw.toml"
+hash = "15f70ccb7c7b0ff27ec791788d24de00fc6f6715311644b0fe374f006c9f230e"
 metafile = true
 
 [[files]]
@@ -46,13 +66,38 @@ hash = "be95d31d53d261e6ab79defd7eebe5e47e31a0f93bd77977de704bc050488c32"
 metafile = true
 
 [[files]]
+file = "mods/farmers-delight.pw.toml"
+hash = "32504030cc409f25f4864cb0387b906cd07f1c818301302faddd0de7f777d51c"
+metafile = true
+
+[[files]]
 file = "mods/galosphere.pw.toml"
 hash = "d0fe7e7d3d01d6cb3c77c7378cde51834ddb3a42da84e84ba2adc2716006db1b"
 metafile = true
 
 [[files]]
+file = "mods/ice-and-fire-dragons.pw.toml"
+hash = "5cddb71ac06974f13689c1d9b0ff4d9ba0edfbb12ce974228f3383a77228a596"
+metafile = true
+
+[[files]]
+file = "mods/mystical-oak-tree.pw.toml"
+hash = "115b8a240e0fa364ba3aa143e173be53442275dc3c38c85eea1d6a02557b0c77"
+metafile = true
+
+[[files]]
 file = "mods/neapolitan.pw.toml"
 hash = "d01255f11201634a26e318142a28fe47705388c27d2c44e0bc3fd69593870a00"
+metafile = true
+
+[[files]]
+file = "mods/oreganized.pw.toml"
+hash = "8e9c30bcae5054775fc0ab883806bd0ff7d1fd9b1c3ec4e89765a92d40d8bdbe"
+metafile = true
+
+[[files]]
+file = "mods/overweight-farming.pw.toml"
+hash = "43a978d4f0267a8411fcc22a64c022a43ae150f0005cbaddd2d0094629437291"
 metafile = true
 
 [[files]]
@@ -68,6 +113,11 @@ metafile = true
 [[files]]
 file = "mods/the-twilight-forest.pw.toml"
 hash = "d1f859de9867b7433305aef1631aa22a436a4c3924474a21c0a22ab5f2093c04"
+metafile = true
+
+[[files]]
+file = "mods/thermal-expansion.pw.toml"
+hash = "ea3ab41c8e1346c6b78afef0ba8a00b3409705b2eecae716883882f12956d90d"
 metafile = true
 
 [[files]]
