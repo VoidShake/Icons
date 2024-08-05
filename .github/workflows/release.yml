@@ -2,9 +2,9 @@ name: Build Website
 on:
    workflow_dispatch:
       inputs:
-         cache:
-            description: 'use cached icons?'
-            default: true
+         skipCache:
+            description: 'skip the cached icons?'
+            default: false
             type: boolean
    push:
       paths:
@@ -49,12 +49,13 @@ jobs:
            id: cache
            with:
               path: web/public/icons
+              lookup-only: ${{ inputs.skipCache }}
               key: icons-${{ hashFiles('.gitmodules', 'pack/index.toml') }}
               restore-keys: |
                  icons-
 
          - name: Generate Data
-           if: inputs.cache && steps.cache.outputs.cache-hit != 'true'
+           if: inputs.skipCache || steps.cache.outputs.cache-hit != 'true'
            run: pnpm run gen
            env:
               CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
