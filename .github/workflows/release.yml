@@ -1,6 +1,11 @@
 name: Build Website
 on:
    workflow_dispatch:
+      inputs:
+         cache:
+            description: 'use cached icons?'
+            default: true
+            type: boolean
    push:
       paths:
          - .gitmodules
@@ -49,7 +54,7 @@ jobs:
                  icons-
 
          - name: Generate Data
-           if: steps.cache.outputs.cache-hit != 'true'
+           if: inputs.cache && steps.cache.outputs.cache-hit != 'true'
            run: pnpm run gen
            env:
               CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}

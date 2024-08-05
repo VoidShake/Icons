@@ -1,6 +1,9 @@
 {
    "root": true,
    "plugins": ["require-extensions"],
+   "parserOptions": {
+      "sourceType": "module"
+   },
    "extends": ["eslint:recommended", "plugin:require-extensions/recommended"],
    "rules": {
       "@typescript-eslint/explicit-module-boundary-types": "off",

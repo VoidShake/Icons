@@ -1,0 +1,6 @@
+{
+   "parent": "assets_renderer:item/static_chest",
+   "textures": {
+      "all": "quark:quark_variant_chests/dark_oak/normal"
+   }
+}

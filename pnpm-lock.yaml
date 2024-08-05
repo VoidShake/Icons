@@ -11,8 +11,8 @@ importers:
   generator:
     dependencies:
       '@pssbletrngle/assets-renderer':
-        specifier: ^1.3.2
-        version: 1.3.2(encoding@0.1.13)
+        specifier: ^1.4.1
+        version: 1.4.1(encoding@0.1.13)
       toml:
         specifier: ^3.0.0
         version: 3.0.0
@@ -568,12 +568,15 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     deprecated: This functionality has been moved to @npmcli/fs
 
-  '@pssbletrngle/assets-renderer@1.3.2':
-    resolution: {integrity: sha512-8WDbfQi6I7h/FFX21/mg9jDn9rJHohRLcmfKJJC5qSAOpbmiNsb4jNDm+bs8ZwBAxk5mJ8iK5P7j+2Mt4gBkSA==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/assets-renderer/1.3.2/35172c66a5b4d5cb50b783d3bbeff1e92c576ce6}
+  '@pssbletrngle/assets-renderer@1.4.1':
+    resolution: {integrity: sha512-pGcHx56GaFZYu5MrZV4po+pWXG/j33tXq+NxAEuMxQDiYesfPN/dcdDzHJjro0aSE5/85AaiJ6bcbrBCnjRccw==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/assets-renderer/1.4.1/6b3027bdd6429ac3a529a3d1261a18b863936e1e}
     hasBin: true
 
   '@pssbletrngle/pack-resolver@1.2.0':
     resolution: {integrity: sha512-vD6JRiTWxlgrljym6A0n9+bHIP57jUzDfla3Vv6r6MV0YBufA7v2xobyq8sm8YqaqA4API/XxhcXlN2Dr255kA==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/pack-resolver/1.2.0/2b8696a25bd8fda262133f00bd5883656aae4d4c}
+
+  '@pssbletrngle/pack-resolver@1.4.1':
+    resolution: {integrity: sha512-MzyeXoCzOZvcsflBR7ES/Waxy5yZ3JUqAuOT2RF0ViZPCC5wb1SwwzX7q+sIuHdA5rS3nErk2MDoRVsc/MUETA==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/pack-resolver/1.4.1/078a33ccdacc183d49e28a29be1714172f20896a}
 
   '@pssbletrngle/resource-merger@1.2.4':
     resolution: {integrity: sha512-sx+U/x5L0uNutEJbbwy0NA75CnJxZ/gwNBoOZwvMJQprEn78dQIs2QZnQPgDpSR7XWU5/k/8QcM+E9Ip7zFmAA==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/resource-merger/1.2.4/68728efc977240f92b194c78e16ca19486c7d122}
@@ -3358,9 +3361,9 @@ snapshots:
       mkdirp: 1.0.4
       rimraf: 3.0.2
 
-  '@pssbletrngle/assets-renderer@1.3.2(encoding@0.1.13)':
+  '@pssbletrngle/assets-renderer@1.4.1(encoding@0.1.13)':
     dependencies:
-      '@pssbletrngle/pack-resolver': 1.2.0
+      '@pssbletrngle/pack-resolver': 1.4.1
       '@pssbletrngle/resource-merger': 1.2.4
       '@types/command-line-usage': 5.0.4
       '@types/fs-extra': 9.0.13
@@ -3391,6 +3394,13 @@ snapshots:
       minimatch: 5.1.6
       node-stream-zip: 1.15.0
       typescript: 4.9.5
+
+  '@pssbletrngle/pack-resolver@1.4.1':
+    dependencies:
+      fs-extra: 10.1.0
+      lodash: 4.17.21
+      minimatch: 5.1.6
+      node-stream-zip: 1.15.0
 
   '@pssbletrngle/resource-merger@1.2.4':
     dependencies:
