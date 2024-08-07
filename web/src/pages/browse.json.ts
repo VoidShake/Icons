@@ -20,5 +20,9 @@ export const GET: APIRoute = ({ request }) => {
    const items = matches.slice(0, limit)
    const count = items.length
 
-   return new Response(JSON.stringify({ items, count, total }))
+   return new Response(JSON.stringify({ items, count, total }), {
+      headers: {
+         'Content-Type': 'application/json',
+      },
+   })
 }

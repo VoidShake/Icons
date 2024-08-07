@@ -8,7 +8,11 @@ export const GET: APIRoute = ({ params }) => {
 
    const icon = icons.find(it => it.id === id && it.namespace === namespace)
 
-   return new Response(JSON.stringify(icon))
+   return new Response(JSON.stringify(icon), {
+      headers: {
+         'Content-Type': 'application/json',
+      },
+   })
 }
 
 export const HEAD: APIRoute = () => {
