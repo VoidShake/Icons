@@ -1,18 +1,24 @@
 ---
 import StatusLayout from '../components/StatusLayout.astro'
 
+export const prerender = false
+
 interface Props {
-   error: Error
+   error: unknown
 }
 
 const { error } = Astro.props
+
+let message = 'Error Unkown'
+if (error instanceof Error) message = error.message
+if (typeof error === 'string') message = error
 ---
 
 <StatusLayout title="Error">
    <h1>500</h1>
    <h2>An Error ocurred</h2>
    <p>
-      <code>{error.message}</code>
+      <code>{message}</code>
    </p>
 </StatusLayout>
 
