@@ -5,6 +5,10 @@ li {
       margin: 0;
       text-overflow: ellipsis;
       overflow: hidden;
+
+      .highlighted {
+         color: var(--accent-light);
+      }
    }
 
    small {
@@ -16,7 +20,7 @@ li {
       aspect-ratio: 1 / 1;
    }
 
-   div {
+   .copyArea {
       position: relative;
 
       cursor: pointer;
@@ -34,6 +38,10 @@ li {
          transition: background 0.5s ease;
          background: var(--accent);
          color: transparent;
+
+         .highlighted {
+            color: transparent;
+         }
 
          &::after {
             content: 'Copied!';

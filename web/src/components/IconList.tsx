@@ -1,4 +1,4 @@
-import Fuse, { type Expression } from 'fuse.js'
+import Fuse, { type Expression, type FuseResult } from 'fuse.js'
 import { useEffect, useMemo, useReducer } from 'react'
 import type { Icon } from '../types/Icon.ts'
 import IconPanel from './IconPanel.tsx'
@@ -10,7 +10,7 @@ type Props = {
 }
 
 const MAX_ENTRIES = 250
-const MIN_QUERY_LENGTH = 2
+const MIN_QUERY_LENGTH = 1
 
 type Encodeable = { toString(): string }
 
@@ -35,18 +35,34 @@ function useQueryState<T extends Encodeable>(key: string, decode: (from: string)
 }
 
 function toExpression(query: string): string | Expression {
-   if (query.includes(':')) {
-      const [namespace, id] = query.split(':') as [string, string]
-      if (!id.trim()) return { namespace }
-      return { namespace, id }
-   }
+   const namespaceQueries =
+      query
+         .match(/@([\w]*)/g)
+         ?.map(it => it.slice(1))
+         ?.filter(it => it.length) ?? []
 
-   return query
+   const idQueries = query
+      .replace(/@[\w]*/g, '')
+      .split(/\s+/)
+      .filter(it => it.trim().length)
+
+   return {
+      $and: [...idQueries.map(search => ({ id: search })), ...namespaceQueries.map(search => ({ namespace: search }))],
+   }
 }
 
 export default function IconList({ icons }: Props) {
    const [query, setQuery] = useQueryState('q', it => it, '')
    const [size] = useQueryState('s', parseInt, MAX_ENTRIES)
+
+   const unfiltered = useMemo(
+      () =>
+         icons.map<FuseResult<Icon>>((item, refIndex) => ({
+            item,
+            refIndex,
+         })),
+      [icons]
+   )
 
    const fuse = useMemo(
       () =>
@@ -64,13 +80,14 @@ export default function IconList({ icons }: Props) {
             includeMatches: true,
             minMatchCharLength: MIN_QUERY_LENGTH,
             threshold: 0.25,
+            useExtendedSearch: true,
          }),
       [icons]
    )
 
    const filtered = useMemo(() => {
-      if (query.trim().length < MIN_QUERY_LENGTH) return icons
-      return fuse.search(toExpression(query)).map(result => result.item)
+      if (query.trim().length < MIN_QUERY_LENGTH) return unfiltered
+      return fuse.search(toExpression(query))
    }, [query, icons])
 
    const sliced = useMemo(() => filtered.slice(0, size), [filtered, size])
@@ -86,7 +103,7 @@ export default function IconList({ icons }: Props) {
          />
          <ul>
             {sliced.map(icon => (
-               <IconPanel {...icon} key={icon.url} />
+               <IconPanel {...icon} key={icon.item.url} />
             ))}
          </ul>
       </div>
