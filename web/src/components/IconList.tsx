@@ -1,20 +1,21 @@
-import Fuse, { type Expression, type FuseResult } from 'fuse.js'
-import { useEffect, useMemo, useReducer } from 'preact/hooks'
+import { type FuseResult } from 'fuse.js'
+import { useQuery } from 'preact-fetching'
+import { useCallback, useEffect, useMemo, useReducer, useState } from 'preact/hooks'
 import type { Icon } from '../types/Icon.ts'
 import IconPanel from './IconPanel.tsx'
 
+import debounce from 'debounce'
 import './IconList.module.css'
 
 type Props = {
-   icons: Icon[]
+   items: FuseResult<Icon>[]
+   query: string
+   limit: number
 }
-
-const MAX_ENTRIES = 250
-const MIN_QUERY_LENGTH = 1
 
 type Encodeable = { toString(): string }
 
-function useQueryState<T extends Encodeable>(key: string, decode: (from: string) => T | null, defaultValue: T) {
+function useQueryState<T extends Encodeable>(key: string, defaultValue: T) {
    const state = useReducer((_: T, value: T) => {
       const url = new URL(window.location.href)
       url.searchParams.set(key, value.toString())
@@ -22,90 +23,48 @@ function useQueryState<T extends Encodeable>(key: string, decode: (from: string)
       return value
    }, defaultValue)
 
-   // Load query params on client
-   useEffect(() => {
-      const query = new URLSearchParams(window.location.search)
-      if (query.has(key)) {
-         const decoded = decode(query.get(key)!)
-         if (decoded !== null) state[1](decoded)
-      }
-   }, [])
-
    return state
 }
 
-function toExpression(query: string): string | Expression {
-   const namespaceQueries =
-      query
-         .match(/@(["\^\$!\w]*)/g)
-         ?.map(it => it.slice(1))
-         ?.filter(it => it.length) ?? []
-
-   const idQueries = query
-      .replace(/@["\^\$!\w]*/g, '')
-      .split(/\s+/)
-      .filter(it => it.trim().length)
-
-   return {
-      $and: [...idQueries.map(search => ({ id: search })), ...namespaceQueries.map(search => ({ namespace: search }))],
-   }
+type Page<T> = {
+   items: T[]
+   count: number
+   total: number
 }
 
-export default function IconList({ icons }: Props) {
-   const [query, setQuery] = useQueryState('q', it => it, '')
-   const [size] = useQueryState('s', parseInt, MAX_ENTRIES)
+async function fetchItems(query: string, limit: number): Promise<Page<FuseResult<Icon>>> {
+   const response = await fetch(`/browse.json?includeMatches=true&query=${query}&limit=${limit}`)
+   if (!response.ok) throw new Error(response.statusText)
+   return await response.json()
+}
 
-   const unfiltered = useMemo(
-      () =>
-         icons.map<FuseResult<Icon>>((item, refIndex) => ({
-            item,
-            refIndex,
-         })),
-      [icons]
-   )
+export function useLazyQuery<T>(data: T | undefined | null, initialData?: T) {
+   const [value, setValue] = useState(initialData)
+   useEffect(() => {
+      if (data) setValue(data)
+   }, [data])
+   return value
+}
 
-   const fuse = useMemo(
-      () =>
-         new Fuse(icons, {
-            keys: [
-               {
-                  name: 'id',
-                  weight: 10,
-               },
-               {
-                  name: 'namespace',
-                  weight: 1,
-               },
-            ],
-            includeMatches: true,
-            minMatchCharLength: MIN_QUERY_LENGTH,
-            threshold: 0.25,
-            useExtendedSearch: true,
-         }),
-      [icons]
-   )
+export default function IconList(initial: Props) {
+   const [query, setQuery] = useQueryState('q', initial.query)
+   const [size] = useQueryState('s', initial.limit)
+   const setQueryDebounced = useMemo(() => debounce(setQuery, 250), [setQuery])
 
-   const filtered = useMemo(() => {
-      if (query.trim().length < MIN_QUERY_LENGTH) return unfiltered
-      return fuse.search(toExpression(query))
-   }, [query, icons])
-
-   const sliced = useMemo(() => filtered.slice(0, size), [filtered, size])
+   const fetch = useCallback(() => fetchItems(query, size), [query, size])
+   const { data } = useQuery(`browse/${query}/${size}´`, fetch)
+   const items = useLazyQuery(data?.items, initial.items)
 
    return (
       <div>
          <input
-            type='text'
-            name='search'
-            placeholder='Search...'
+            type="text"
+            name="search"
+            placeholder="Search..."
             value={query}
-            onInput={e => setQuery(e.currentTarget.value)}
+            onInput={e => setQueryDebounced(e.currentTarget.value)}
          />
-         <ul>
-            {sliced.map(icon => (
-               <IconPanel {...icon} key={icon.item.url} />
-            ))}
-         </ul>
+         <ul>{items?.map(icon => <IconPanel {...icon} key={icon.item.url} />)}</ul>
       </div>
    )
 }

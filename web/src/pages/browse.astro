@@ -1,19 +1,31 @@
 ---
-import IconList from '../components/IconList.tsx';
-import Layout from '../layouts/Layout.astro';
-import getIcons from '../lib/getIcons';
+import IconList from '../components/IconList.tsx'
+import Layout from '../layouts/Layout.astro'
+import getIcons from '../lib/getIcons'
+import { createSearcher, MAX_ITEMS } from '../lib/search'
+
+export const prerender = false
 
 const icons = getIcons()
+const search = createSearcher(icons)
+
+const params = new URLSearchParams(Astro.url.searchParams)
+
+const query = params.get('q') ?? ''
+let limit = parseInt(params.get('s')!)
+if (isNaN(limit)) limit = Number.MAX_SAFE_INTEGER
+
+const matches = search(query, true).slice(0, Math.min(limit, MAX_ITEMS))
 ---
 
 <Layout title="Minecraft Icons">
    <main>
-	   <IconList client:load icons={icons}></IconList>
+      <IconList client:load items={matches} query={query} limit={limit} />
    </main>
 </Layout>
 
 <style>
-	li:not(:last-child) {
-		margin-bottom: 0.5em;
-	}
+   li:not(:last-child) {
+      margin-bottom: 0.5em;
+   }
 </style>

@@ -1,0 +1,52 @@
+---
+import hole from '../assets/hole.png'
+import Layout from '../layouts/Layout.astro'
+
+interface Props {
+   title: string
+}
+
+const { title } = Astro.props
+---
+
+<Layout title={title}>
+   <main class="centered">
+      <section class="hole centered" style={{ backgroundImage: `url(${hole.src})` }}>
+         <slot />
+      </section>
+   </main>
+</Layout>
+
+<style scoped>
+   main,
+   .hole {
+      height: calc(100dvh - 2em);
+   }
+
+   .centered {
+      display: grid;
+      place-content: center;
+   }
+
+   .hole :global(h1, h2) {
+      margin: 0;
+      text-align: center;
+   }
+
+   .hole :global(h1) {
+      font-size: 7rem;
+   }
+
+   .hole :global(h2) {
+      font-size: 1.5rem;
+   }
+
+   .hole {
+      aspect-ratio: 4 / 3;
+      max-width: 90dvw;
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+   }
+</style>

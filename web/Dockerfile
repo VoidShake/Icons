@@ -14,9 +14,15 @@ RUN mv web/public/icons pruned/public/icons
 WORKDIR pruned
 RUN pnpm run build
 
-FROM nginx:alpine AS runtime
-COPY web/nginx.conf /etc/nginx/nginx.conf
+FROM node:20-slim AS runtime
 
-COPY --from=builder /app/pruned/dist /usr/share/nginx/html
+WORKDIR /app
+COPY --from=builder /app/pruned/node_modules ./node_modules
+COPY --from=builder /app/pruned/dist ./dist
+COPY --from=builder /app/pruned/public ./public
 
+ENV HOST=0.0.0.0
+ENV PORT=80
 EXPOSE 80
+
+CMD node ./dist/server/entry.mjs

@@ -10,7 +10,7 @@ function Highlighted({ children, match }: { match?: FuseResultMatch | undefined;
       const firstMatch = indices[0]?.[0] ?? children.length
 
       return [
-         <span key='start'>{children.slice(0, firstMatch)}</span>,
+         <span key="start">{children.slice(0, firstMatch)}</span>,
          ...indices.flatMap(([from, to], i, a) => {
             const nextMatch = a[i + 1]?.[0] ?? children.length
             return [
