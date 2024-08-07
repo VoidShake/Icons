@@ -1,5 +1,5 @@
 import type { FuseResult, FuseResultMatch } from 'fuse.js'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'preact/hooks'
 import type { Icon } from '../types/Icon.ts'
 
 import styles from './IconPanel.module.css'

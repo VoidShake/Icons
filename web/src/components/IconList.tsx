@@ -1,5 +1,5 @@
 import Fuse, { type Expression, type FuseResult } from 'fuse.js'
-import { useEffect, useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from 'preact/hooks'
 import type { Icon } from '../types/Icon.ts'
 import IconPanel from './IconPanel.tsx'
 
@@ -99,7 +99,7 @@ export default function IconList({ icons }: Props) {
             name='search'
             placeholder='Search...'
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onInput={e => setQuery(e.currentTarget.value)}
          />
          <ul>
             {sliced.map(icon => (
