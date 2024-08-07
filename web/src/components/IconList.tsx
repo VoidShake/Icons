@@ -37,12 +37,12 @@ function useQueryState<T extends Encodeable>(key: string, decode: (from: string)
 function toExpression(query: string): string | Expression {
    const namespaceQueries =
       query
-         .match(/@([\w]*)/g)
+         .match(/@(["\^\$!\w]*)/g)
          ?.map(it => it.slice(1))
          ?.filter(it => it.length) ?? []
 
    const idQueries = query
-      .replace(/@[\w]*/g, '')
+      .replace(/@["\^\$!\w]*/g, '')
       .split(/\s+/)
       .filter(it => it.trim().length)
 
