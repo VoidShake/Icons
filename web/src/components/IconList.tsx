@@ -1,6 +1,6 @@
-import Fuse from 'fuse.js'
+import Fuse, { type Expression } from 'fuse.js'
 import { useEffect, useMemo, useReducer } from 'react'
-import type { Icon } from '../types/Icon.ts';
+import type { Icon } from '../types/Icon.ts'
 import IconPanel from './IconPanel.tsx'
 
 import './IconList.module.css'
@@ -34,6 +34,16 @@ function useQueryState<T extends Encodeable>(key: string, decode: (from: string)
    return state
 }
 
+function toExpression(query: string): string | Expression {
+   if (query.includes(':')) {
+      const [namespace, id] = query.split(':') as [string, string]
+      if (!id.trim()) return { namespace }
+      return { namespace, id }
+   }
+
+   return query
+}
+
 export default function IconList({ icons }: Props) {
    const [query, setQuery] = useQueryState('q', it => it, '')
    const [size] = useQueryState('s', parseInt, MAX_ENTRIES)
@@ -60,7 +70,7 @@ export default function IconList({ icons }: Props) {
 
    const filtered = useMemo(() => {
       if (query.trim().length < MIN_QUERY_LENGTH) return icons
-      return fuse.search(query).map(result => result.item)
+      return fuse.search(toExpression(query)).map(result => result.item)
    }, [query, icons])
 
    const sliced = useMemo(() => filtered.slice(0, size), [filtered, size])

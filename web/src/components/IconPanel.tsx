@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import type { Icon } from '../types/Icon.ts';
+import type { Icon } from '../types/Icon.ts'
 
 import './IconPanel.module.css'
 
