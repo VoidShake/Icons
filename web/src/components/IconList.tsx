@@ -5,6 +5,7 @@ import type { Icon } from '../types/Icon.ts'
 import IconPanel from './IconPanel.tsx'
 
 import debounce from 'debounce'
+import type { TargetedEvent } from 'preact/compat'
 import './IconList.module.css'
 
 type Props = {
@@ -47,9 +48,19 @@ export function useLazyQuery<T>(data: T | undefined | null, initialData?: T) {
 }
 
 export default function IconList(initial: Props) {
-   const [query, setQuery] = useQueryState('q', initial.query)
+   const [search, setSearch] = useQueryState('q', initial.query)
+   const [query, setQuery] = useState(initial.query)
    const [size] = useQueryState('s', initial.limit)
    const setQueryDebounced = useMemo(() => debounce(setQuery, 250), [setQuery])
+
+   const onInput = useCallback(
+      (event: TargetedEvent<HTMLInputElement>) => {
+         const { value } = event.currentTarget
+         setSearch(value)
+         setQueryDebounced(value)
+      },
+      [setQueryDebounced, setSearch],
+   )
 
    const fetch = useCallback(() => fetchItems(query, size), [query, size])
    const { data } = useQuery(`browse/${query}/${size}´`, fetch)
@@ -57,13 +68,7 @@ export default function IconList(initial: Props) {
 
    return (
       <div>
-         <input
-            type="text"
-            name="search"
-            placeholder="Search..."
-            value={query}
-            onInput={e => setQueryDebounced(e.currentTarget.value)}
-         />
+         <input type="text" name="search" placeholder="Search..." value={search} onInput={onInput} />
          <ul>{items?.map(icon => <IconPanel {...icon} key={icon.item.url} />)}</ul>
       </div>
    )
