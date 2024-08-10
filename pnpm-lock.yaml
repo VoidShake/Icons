@@ -11,8 +11,8 @@ importers:
   generator:
     dependencies:
       '@pssbletrngle/assets-renderer':
-        specifier: ^1.4.1
-        version: 1.4.1(encoding@0.1.13)
+        specifier: ^1.5.0
+        version: 1.5.0(encoding@0.1.13)
       toml:
         specifier: ^3.0.0
         version: 3.0.0
@@ -599,8 +599,8 @@ packages:
       preact: ^10.4.0
       vite: '>=2.0.0'
 
-  '@pssbletrngle/assets-renderer@1.4.1':
-    resolution: {integrity: sha512-pGcHx56GaFZYu5MrZV4po+pWXG/j33tXq+NxAEuMxQDiYesfPN/dcdDzHJjro0aSE5/85AaiJ6bcbrBCnjRccw==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/assets-renderer/1.4.1/6b3027bdd6429ac3a529a3d1261a18b863936e1e}
+  '@pssbletrngle/assets-renderer@1.5.0':
+    resolution: {integrity: sha512-ON/c0Nkjpo6e4OTaYgXVu4v98djW2YPk2Ez37Df/AtTT1cNXH+annEckLlhTIp9NKTxAaX3qLEdB3NYOdgSkxw==, tarball: https://npm.pkg.github.com/download/@pssbletrngle/assets-renderer/1.5.0/ffd65ba6a053d866c790907e81fe6fc226c809a6}
     hasBin: true
 
   '@pssbletrngle/pack-resolver@1.2.0':
@@ -3597,7 +3597,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@pssbletrngle/assets-renderer@1.4.1(encoding@0.1.13)':
+  '@pssbletrngle/assets-renderer@1.5.0(encoding@0.1.13)':
     dependencies:
       '@pssbletrngle/pack-resolver': 1.4.1
       '@pssbletrngle/resource-merger': 1.2.4
