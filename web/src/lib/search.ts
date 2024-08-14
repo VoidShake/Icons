@@ -4,7 +4,26 @@ import type { Icon } from '../types/Icon'
 export const MIN_QUERY_LENGTH = 1
 export const MAX_ITEMS = 100
 
-export function transformExpression(query: string): string | Expression {
+export function transformExpression(query: string | Expression): Expression {
+   if (typeof query !== 'string') {
+      if ('$and' in query && Array.isArray(query.$and)) {
+         return { $and: query.$and.map(transformExpression) }
+      }
+
+      if ('$or' in query && Array.isArray(query.$or)) {
+         return { $or: query.$or.map(transformExpression) }
+      }
+
+      return Object.fromEntries(
+         Object.entries(query).map(([key, value]) => {
+            if (typeof value === 'string') return [key, value]
+            return [key, transformExpression(value)]
+         }),
+      )
+
+      return query
+   }
+
    const namespaceQueries =
       query
          .match(/@(["\^\$!\w]*)/g)
@@ -41,7 +60,7 @@ export function createFuse(icons: Icon[]) {
 }
 
 type Searcher = <B extends boolean>(
-   query: string | undefined,
+   query: string | Expression | undefined,
    includeMatches: B,
 ) => ReadonlyArray<B extends true ? FuseResult<Icon> : Icon>
 
@@ -53,13 +72,17 @@ export function createSearcher(icons: Icon[]) {
       refIndex,
    }))
 
-   const searcher = <B extends boolean>(query: string | undefined, includeMatches: B) => {
-      if (!query?.trim().length) {
+   const searcher = <B extends boolean>(query: string | Expression | undefined, includeMatches: B) => {
+      const trimmedQuery = typeof query === 'string' ? query.trim() : query
+
+      if (!trimmedQuery) {
          if (includeMatches) return UNFILTERED
          return icons
       }
 
-      const expression = transformExpression(query)
+      const expression = transformExpression(trimmedQuery)
+      console.log(query, JSON.stringify(expression, null, 2))
+
       const matches = fuse.search(expression)
       if (includeMatches) return matches
       return matches.map(it => it.item)
