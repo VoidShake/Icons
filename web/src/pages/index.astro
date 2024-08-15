@@ -30,7 +30,11 @@ const exampleUrls = examples.map(it => `/icons/${it}.png`)
       </ul>
 
       <a href="/browse">
-         <button> See all available icons </button>
+         <button class="accent">See all available icons</button>
+      </a>
+
+      <a href="/mods">
+         <button>Supported mods</button>
       </a>
    </main>
 </Layout>
@@ -46,14 +50,16 @@ const exampleUrls = examples.map(it => `/icons/${it}.png`)
    }
 
    button {
-      background: var(--accent);
-
       margin-top: 1rem;
       margin-left: 3em;
 
-      &:hover {
-         background: var(--accent-light);
-         color: black;
+      &.accent {
+         background: var(--accent);
+
+         &:hover {
+            background: var(--accent-light);
+            color: black;
+         }
       }
    }
 </style>

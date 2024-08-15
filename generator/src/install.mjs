@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
-import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, statSync } from 'fs'
-import { dirname, join } from 'path'
+import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'fs'
+import { basename, dirname, join } from 'path'
 import { Readable } from 'stream'
 import { parse } from 'toml'
 
@@ -22,6 +22,27 @@ function verifySha(name, content, checksum) {
    }
 }
 
+const sharedHeaders = {
+   accept: 'application/json',
+   'User-Agent': 'voidshake/icons',
+}
+
+async function fetchFromModrinth(endpoint) {
+   const token = process.env.MODRINTH_TOKEN
+
+   if (!token) throw new Error(`Unable to download from modrinth without passing a token`)
+
+   const response = await fetch(`https://api.modrinth.com/v2/${endpoint}`, {
+      headers: {
+         ...sharedHeaders,
+         authorization: token,
+      },
+   })
+   if (!response.ok) throw new Error(response.statusText)
+
+   return await response.json()
+}
+
 async function fetchFromCurseforge(endpoint) {
    const token = process.env.CURSEFORGE_TOKEN
 
@@ -29,22 +50,22 @@ async function fetchFromCurseforge(endpoint) {
 
    const response = await fetch(`https://api.curseforge.com/${endpoint}`, {
       headers: {
+         ...sharedHeaders,
          'x-api-key': token,
       },
    })
    if (!response.ok) throw new Error(response.statusText)
 
-   return response
+   const { data } = await response.json()
+   return data
 }
 
 async function getUrlFrom({ download, name, update }) {
    if (download.url) return download.url
    if (download.mode === 'metadata:curseforge' && update.curseforge) {
-      const response = await fetchFromCurseforge(
+      return fetchFromCurseforge(
          `v1/mods/${update.curseforge['project-id']}/files/${update.curseforge['file-id']}/download-url`
       )
-      const { data } = await response.json()
-      return data
    }
 
    throw new Error(`unable to find url for ${name}`)
@@ -65,6 +86,62 @@ async function downloadFile(definition, outPath) {
       readable.on('error', rej)
       readable.on('end', res)
    })
+}
+
+async function downloadMod(definition, dir) {
+   console.log(`   downloading ${definition.filename}...`)
+
+   const outPath = join(to, dir, definition.filename)
+
+   if (!existsSync(outPath) || options.includes('--overwrite')) {
+      await downloadFile(definition, outPath)
+   } else {
+      console.log(`   using cached file for ${outPath}`)
+   }
+
+   verifyFileSha(outPath, definition.download.hash)
+}
+
+async function getModInfo(definition) {
+   if ('curseforge' in definition.update) {
+      const data = await fetchFromCurseforge(`v1/mods/${definition.update.curseforge['project-id']}`)
+      const url = `https://www.curseforge.com/minecraft/mc-mods/${data.slug}`
+      const icon = data.logo?.thumbnailUrl
+      return { url, icon }
+   }
+
+   if ('modrinth' in definition.update) {
+      const data = await fetchFromModrinth(`project/${definition.update.modrinth['mod-id']}`)
+      const url = `https://modrinth.com/mod/${data.slug}`
+      const icon = data.icon_url
+      return { url, icon }
+   }
+
+   return null
+}
+
+async function gatherInfo(definition, file) {
+   const outDir = join('..', 'web', dirname(file))
+
+   if (!existsSync(outDir)) {
+      mkdirSync(outDir, { recursive: true })
+   }
+
+   const base = basename(file)
+   const name = base.substring(0, base.length - '.pw.toml'.length) + '.json'
+   const out = join(outDir, name)
+
+   writeFileSync(
+      out,
+      JSON.stringify(
+         {
+            name: definition.name,
+            ...(await getModInfo(definition)),
+         },
+         null,
+         2
+      )
+   )
 }
 
 async function installPack(from, to, options) {
@@ -90,17 +167,7 @@ async function installPack(from, to, options) {
       index.files.map(async ({ file }) => {
          const definition = readToml(join(packDir, file))
 
-         console.log(`   downloading ${definition.filename}...`)
-
-         const outPath = join(to, dirname(file), definition.filename)
-
-         if (!existsSync(outPath) || options.includes('--overwrite')) {
-            await downloadFile(definition, outPath)
-         } else {
-            console.log(`   using cached file for ${outPath}`)
-         }
-
-         verifyFileSha(outPath, definition.download.hash)
+         await Promise.all([downloadMod(definition, dirname(file)), gatherInfo(definition, file)])
       })
    )
 

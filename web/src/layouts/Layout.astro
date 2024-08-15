@@ -27,6 +27,7 @@ const { title } = Astro.props
       --accent-dark: rgba(49, 10, 101);
       --bg: #13151a;
       --bg-light: rgb(67, 73, 85);
+      --bg-lighter: rgb(92, 99, 116);
       --text: #ebebeb;
    }
 
@@ -62,7 +63,8 @@ const { title } = Astro.props
    a {
       color: var(--accent);
 
-      &:not(:hover) {
+      &:not(:hover),
+      &:has(button) {
          text-decoration: none;
       }
    }
@@ -82,8 +84,8 @@ const { title } = Astro.props
 
       transition:
          outline 0.1s ease,
-         background 0.1s ease,
-         m;
+         color 0.1s ease,
+         background 0.1s ease;
 
       &:focus-visible {
          outline-width: 2px;
@@ -96,5 +98,9 @@ const { title } = Astro.props
 
    button {
       cursor: pointer;
+
+      &:hover {
+         background: var(--bg-lighter);
+      }
    }
 </style>

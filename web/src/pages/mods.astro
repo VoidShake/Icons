@@ -1,0 +1,64 @@
+---
+import { readdirSync, readFileSync } from 'fs'
+import { join, resolve } from 'path'
+import Layout from '../layouts/Layout.astro'
+
+const modDir = resolve('mods')
+
+type ModInfo = {
+   name: string
+   icon?: string
+   url: string
+}
+
+const mods: ModInfo[] = readdirSync(modDir)
+   .map(it => join(modDir, it))
+   .map(it => readFileSync(it).toString())
+   .map(it => JSON.parse(it))
+---
+
+<Layout title="Minecraft Icons">
+   <main>
+      <h1>Supported mods</h1>
+      <ul>
+         {
+            mods.map(({ name, icon, url }) => (
+               <a href={url}>
+                  <li>
+                     <img src={icon} />
+                     <span>{name}</span>
+                  </li>
+               </a>
+            ))
+         }
+      </ul>
+   </main>
+</Layout>
+
+<style scoped>
+   main {
+      max-width: 1000px;
+      margin: 0 auto;
+   }
+
+   ul {
+      padding: 1em 0;
+
+      li {
+         font-size: 2em;
+
+         display: grid;
+         grid-template-columns: 2em 1fr;
+         align-items: center;
+
+         margin-bottom: 0.5em;
+         gap: 0.5em;
+
+         img {
+            object-fit: contain;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+         }
+      }
+   }
+</style>
