@@ -10,6 +10,7 @@ COPY . .
 FROM base AS builder
 RUN pnpm --filter icons-web --prod deploy pruned
 RUN mv web/public/icons pruned/public/icons
+RUN mv web/mods pruned/mods
 
 WORKDIR pruned
 RUN pnpm run build
