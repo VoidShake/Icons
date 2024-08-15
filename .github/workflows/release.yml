@@ -66,7 +66,9 @@ jobs:
         with:
           retention-days: 1
           name: generated-data
-          path: web/public/icons
+          path: |
+            web/public/icons
+            web/mods
 
   docker:
     runs-on: ubuntu-latest
@@ -84,7 +86,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: generated-data
-          path: web/public/icons
+          path: web
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
