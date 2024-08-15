@@ -16,6 +16,16 @@ hash = "39d1ba86affa8e5f75a6009b5c798e2b2427a9e43ad5e129d0ddb2658fa99e4c"
 metafile = true
 
 [[files]]
+file = "mods/amendments.pw.toml"
+hash = "34a97d2567ff613154641a0b0dace49c4f151e8525fb4a47818cba78a3f08063"
+metafile = true
+
+[[files]]
+file = "mods/another-furniture.pw.toml"
+hash = "ba45971e28bf00e0dc80a43d0422c6be3ba67924af1dfbfd7d41b0c746dbdba4"
+metafile = true
+
+[[files]]
 file = "mods/atmospheric.pw.toml"
 hash = "97385908aa948085c8b7c9ace6e42de7331359d1ad30fc8954918c65652a1259"
 metafile = true
@@ -38,6 +48,16 @@ metafile = true
 [[files]]
 file = "mods/botarium.pw.toml"
 hash = "ecffc9d50ab8f279f1318ad4ac5c8a5085cd99a858817f645d86b2bc944cb59e"
+metafile = true
+
+[[files]]
+file = "mods/bountiful.pw.toml"
+hash = "1cde5b24783318d1a0b6e2f56f2d04438a34922ef0b3e2cfd6f910557bea25a2"
+metafile = true
+
+[[files]]
+file = "mods/brazier.pw.toml"
+hash = "debf9ccdb434096822a79970397f6b3afc07e49bfda30f68e4ff58959c427c48"
 metafile = true
 
 [[files]]
@@ -86,6 +106,11 @@ hash = "1a6d3d7a2f7b904468d77d748ed1208633a83195c43e0246b9249278bd015e54"
 metafile = true
 
 [[files]]
+file = "mods/naturalist.pw.toml"
+hash = "b5667d8296390025430b548d3f6d0d2c727cf2659f7f57f8c2b4e5d3444774f3"
+metafile = true
+
+[[files]]
 file = "mods/neapolitan.pw.toml"
 hash = "d01255f11201634a26e318142a28fe47705388c27d2c44e0bc3fd69593870a00"
 metafile = true
@@ -126,6 +151,21 @@ hash = "1fcb1bf91f4979cce47e56392cf9e3d30806bc0ff8aedc92b461272ecac8f8ca"
 metafile = true
 
 [[files]]
+file = "mods/tinkers-construct.pw.toml"
+hash = "8fb06ece06447c992a862fa579f06ff9e613ac6ee45a1270f1c925a717f6c26b"
+metafile = true
+
+[[files]]
 file = "mods/upgrade-aquatic.pw.toml"
 hash = "427a4ac2edeca19b458978f01611b2be1179e325b609e3d56241f97c8415a789"
+metafile = true
+
+[[files]]
+file = "mods/waystones.pw.toml"
+hash = "34c86f976127ded13120aa03479144f6d66fba395665827b4db649c23822f1b6"
+metafile = true
+
+[[files]]
+file = "mods/windsweptmod.pw.toml"
+hash = "ad2ffafd347ee12be77e0afaa35a9d89b1b66835e816f6307d5f109a2f5c432a"
 metafile = true

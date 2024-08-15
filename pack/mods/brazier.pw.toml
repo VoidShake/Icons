@@ -1,0 +1,13 @@
+name = "Brazier"
+filename = "brazier-forge-6.1.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/5okEW6TG/versions/cA0af2GO/brazier-forge-6.1.1.jar"
+hash-format = "sha1"
+hash = "5263d4d6c971a9c5d6d597821444676c2c7e2be6"
+
+[update]
+[update.modrinth]
+mod-id = "5okEW6TG"
+version = "cA0af2GO"
