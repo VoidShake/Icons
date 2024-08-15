@@ -9,3 +9,14 @@ input[type='text'] {
    width: 400px;
    max-width: 100%;
 }
+
+.container {
+   display: grid;
+}
+
+button.more {
+   margin-top: 2em;
+   padding-left: 3em;
+   padding-right: 3em;
+   justify-self: center;
+}

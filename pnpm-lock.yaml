@@ -47,9 +47,6 @@ importers:
       astro:
         specifier: ^4.13.0
         version: 4.13.0(@types/node@17.0.45)(typescript@5.5.4)
-      debounce:
-        specifier: ^2.1.0
-        version: 2.1.0
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -59,10 +56,16 @@ importers:
       preact-fetching:
         specifier: ^1.0.0
         version: 1.0.0(preact@10.23.1)
+      throttle-debounce:
+        specifier: ^5.0.2
+        version: 5.0.2
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
     devDependencies:
+      '@types/throttle-debounce':
+        specifier: ^5.0.2
+        version: 5.0.2
       prettier-plugin-astro:
         specifier: ^0.14.1
         version: 0.14.1
@@ -758,6 +761,9 @@ packages:
   '@types/three@0.146.0':
     resolution: {integrity: sha512-75AgysUrIvTCB054eQa2pDVFurfeFW8CrMQjpzjt3yHBfuuknoSvvsESd/3EhQxPrz9si3+P0wiDUVsWUlljfA==}
 
+  '@types/throttle-debounce@5.0.2':
+    resolution: {integrity: sha512-pDzSNulqooSKvSNcksnV72nk8p7gRqN8As71Sp28nov1IgmPKWbOEIwAWvBME5pPTtaXJAvG3O4oc76HlQ4kqQ==}
+
   '@types/tmp@0.2.6':
     resolution: {integrity: sha512-chhaNf2oKHlRkDGt+tiKE2Z5aJ6qalm7Z9rlLdBwmOiAAf09YQvvoLXjWK4HWPF1xU/fqvMgfNfpVoBscA/tKA==}
 
@@ -1128,10 +1134,6 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
-
-  debounce@2.1.0:
-    resolution: {integrity: sha512-OkL3+0pPWCqoBc/nhO9u6TIQNTK44fnBnzuVtJAbp13Naxw9R6u21x+8tVTka87AhDZ3htqZ2pSSsZl9fqL2Wg==}
-    engines: {node: '>=18'}
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -2680,6 +2682,10 @@ packages:
   three@0.147.0:
     resolution: {integrity: sha512-LPTOslYQXFkmvceQjFTNnVVli2LaVF6C99Pv34fJypp8NbQLbTlu3KinZ0zURghS5zEehK+VQyvWuPZ/Sm8fzw==}
 
+  throttle-debounce@5.0.2:
+    resolution: {integrity: sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A==}
+    engines: {node: '>=12.22'}
+
   through2@0.6.5:
     resolution: {integrity: sha512-RkK/CCESdTKQZHdmKICijdKKsCRVHs5KsLZ6pACAmF/1GPUQhonHSXWNERctxEp7RmvjdNbZTL5z9V7nSCXKcg==}
 
@@ -3780,6 +3786,8 @@ snapshots:
     dependencies:
       '@types/webxr': 0.5.19
 
+  '@types/throttle-debounce@5.0.2': {}
+
   '@types/tmp@0.2.6': {}
 
   '@types/unist@3.0.2': {}
@@ -4281,8 +4289,6 @@ snapshots:
   css-what@6.1.0: {}
 
   cssesc@3.0.0: {}
-
-  debounce@2.1.0: {}
 
   debug@2.6.9:
     dependencies:
@@ -6163,6 +6169,8 @@ snapshots:
   text-table@0.2.0: {}
 
   three@0.147.0: {}
+
+  throttle-debounce@5.0.2: {}
 
   through2@0.6.5:
     dependencies:

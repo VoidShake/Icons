@@ -20,8 +20,6 @@ export function transformExpression(query: string | Expression): Expression {
             return [key, transformExpression(value)]
          }),
       )
-
-      return query
    }
 
    const namespaceQueries =
@@ -81,7 +79,6 @@ export function createSearcher(icons: Icon[]) {
       }
 
       const expression = transformExpression(trimmedQuery)
-      console.log(query, JSON.stringify(expression, null, 2))
 
       const matches = fuse.search(expression)
       if (includeMatches) return matches
