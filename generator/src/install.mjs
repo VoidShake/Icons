@@ -131,6 +131,8 @@ async function gatherInfo(definition, file) {
    const name = base.substring(0, base.length - '.pw.toml'.length) + '.json'
    const out = join(outDir, name)
 
+   if (existsSync(out)) return
+
    writeFileSync(
       out,
       JSON.stringify(

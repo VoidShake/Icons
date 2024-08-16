@@ -1,4 +1,5 @@
 import { renderFrom } from '@pssbletrngle/assets-renderer'
+import parseArgs from 'arg'
 import { existsSync, readdirSync, readFileSync } from 'fs'
 import { join } from 'path'
 
@@ -17,13 +18,21 @@ function parseDumps(from) {
    })
 }
 
-async function run() {
+async function run(overwrite) {
    const include = parseDumps('../dump')
 
-   await renderFrom(['../resources', '../install/mods'], { output: '../web/public/icons', keep: true }, { include })
+   await renderFrom(
+      ['../resources', '../install/mods'],
+      { output: '../web/public/icons', keep: true },
+      { include, overwrite }
+   )
 }
 
-run().catch(e => {
+const args = parseArgs({
+   '--overwrite': Boolean,
+})
+
+run(args['--overwrite']).catch(e => {
    console.error(e)
    process.exit(1)
 })

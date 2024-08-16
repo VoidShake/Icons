@@ -13,6 +13,9 @@ importers:
       '@pssbletrngle/assets-renderer':
         specifier: ^1.5.0
         version: 1.5.0(encoding@0.1.13)
+      arg:
+        specifier: ^5.0.2
+        version: 5.0.2
       toml:
         specifier: ^3.0.0
         version: 3.0.0

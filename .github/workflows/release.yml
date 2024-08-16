@@ -49,14 +49,13 @@ jobs:
         id: cache
         with:
           path: web/public/icons
-          lookup-only: ${{ inputs.skipCache }}
           key: icons-${{ hashFiles('.gitmodules', 'pack/index.toml') }}
           restore-keys: |
             icons-
 
       - name: Generate Data
         if: inputs.skipCache || steps.cache.outputs.cache-hit != 'true'
-        run: pnpm run gen
+        run: pnpm run gen ${{ inputs.skipCache && '--overwrite' || '' }}
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
