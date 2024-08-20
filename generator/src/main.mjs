@@ -4,7 +4,7 @@ import { existsSync, readdirSync, readFileSync } from 'fs'
 import { join } from 'path'
 
 function parseDumps(from) {
-   if (!existsSync(from)) throw new Error(`registry dump directory missing`)
+   if (!existsSync(from)) throw new Error('registry dump directory missing')
 
    const registries = readdirSync(from)
 

@@ -89,14 +89,14 @@ async function downloadFile(definition, outPath) {
 }
 
 async function downloadMod(definition, dir) {
-   console.log(`   downloading ${definition.filename}...`)
+   console.log(`downloading ${definition.filename}...`)
 
    const outPath = join(to, dir, definition.filename)
 
    if (!existsSync(outPath) || options.includes('--overwrite')) {
       await downloadFile(definition, outPath)
    } else {
-      console.log(`   using cached file for ${outPath}`)
+      console.log(`using cached file for ${outPath}`)
    }
 
    verifyFileSha(outPath, definition.download.hash)
@@ -158,7 +158,7 @@ async function installPack(from, to, options) {
 
    if (!existsSync(packFile)) throw new Error(`Unable to locate pack.toml at ${from}`)
 
-   console.log(`Installing pack from ${packFile}`)
+   console.group(`Installing pack from ${packFile}`)
    const pack = readToml(packFile)
 
    const packDir = dirname(packFile)
@@ -174,6 +174,9 @@ async function installPack(from, to, options) {
    )
 
    const errors = results.filter(it => it.status === 'rejected')
+
+   console.groupEnd()
+   console.log()
 
    if (errors.length > 0) {
       errors.forEach(it => console.error(it.reason))
