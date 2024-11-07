@@ -1,0 +1,13 @@
+name = "Dye Depot"
+filename = "dye_depot-1.0.0-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/dl88rsIq/versions/cdGlC270/dye_depot-1.0.0-forge.jar"
+hash-format = "sha512"
+hash = "6664aaeeefb5cb22610a2c475581738eab66f90c2fb509fb5902717d3e9f6634020771f5eec437f49496bf3467d890aee0ec6beab06e25429f8d7e35548d4241"
+
+[update]
+[update.modrinth]
+mod-id = "dl88rsIq"
+version = "cdGlC270"

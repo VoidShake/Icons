@@ -1,0 +1,13 @@
+name = "Doom & Gloom"
+filename = "Doom & Gloom 1.20.1-1.0.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/NdwUq6vV/versions/wBhe6O8T/Doom%20%26%20Gloom%201.20.1-1.0.2.jar"
+hash-format = "sha512"
+hash = "cef639678cda505d57ade3e9dfd5274bb71e3bf3e0201c177452c320cd0fe71675fae30db7b3ed4674d082ca9585fc9eec94c211d7612eb0f51fe6d42df94076"
+
+[update]
+[update.modrinth]
+mod-id = "NdwUq6vV"
+version = "wBhe6O8T"

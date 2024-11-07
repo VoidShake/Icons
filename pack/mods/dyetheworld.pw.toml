@@ -1,0 +1,15 @@
+name = "DyeTheWorld"
+filename = "dye_the_world-0.0.1-beta.jar"
+side = "both"
+
+[download]
+url = "https://github.com/PssbleTrngle/DyeTheWorld/releases/download/0.0.1-beta/dye_the_world-0.0.1-beta.jar"
+hash-format = "sha256"
+hash = "deb54fd662adc6ae970d2297103d5408b93d708e3321720e5cb5a67b856cef6f"
+
+[update]
+[update.github]
+branch = "1.20.x"
+regex = "^.+(?<!-api|-dev|-dev-preshadow|-sources)\\.jar$"
+slug = "PssbleTrngle/DyeTheWorld"
+tag = "0.0.1-beta"

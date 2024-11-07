@@ -17,7 +17,7 @@ metafile = true
 
 [[files]]
 file = "mods/amendments.pw.toml"
-hash = "a6dedacb6c3cf2afd0856c0438fb6432bfd9e5d78b3c4d5026cc2c9798ea1a99"
+hash = "c52aab6767b8a08db1fa860cee2f8019d804b92b80fbe78f701fcd4b37d6ad7d"
 metafile = true
 
 [[files]]
@@ -67,7 +67,22 @@ metafile = true
 
 [[files]]
 file = "mods/create.pw.toml"
-hash = "05e9e28a081c279ce16f213807c20ad69c9bfe0ec75088635ce443b166838381"
+hash = "1eceb4e4ab86c793f992ce9444e92f46dae76c3f744d8e19feb1143fb6c01939"
+metafile = true
+
+[[files]]
+file = "mods/doom-gloom.pw.toml"
+hash = "1b37ae3a0db37f883419099c64a274cd7abbfe98feddb6c0fc1c64d4162919d8"
+metafile = true
+
+[[files]]
+file = "mods/dye-depot.pw.toml"
+hash = "8e1f1ee25a804f86e13b25ecc628ecac7192d147d2c035eefbe654fb76dc62f2"
+metafile = true
+
+[[files]]
+file = "mods/dyetheworld.pw.toml"
+hash = "778ee0d72d2154b280de40ab0b1acb7b901707c813d85750bf950465003a4d48"
 metafile = true
 
 [[files]]
@@ -117,7 +132,7 @@ metafile = true
 
 [[files]]
 file = "mods/oreganized.pw.toml"
-hash = "c35c2f2bcaa46543e558f71039f7d5e4483ecc5872512775794618bd13717b42"
+hash = "045598e7186ed5e770ac091dce4ab2963afdf1fce53a2b1f6498f6c72d082754"
 metafile = true
 
 [[files]]
@@ -132,7 +147,7 @@ metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "571e9de8e5a4b11c6e6cc316a1abffb0ba53d38debe4f6289e5c037f23276856"
+hash = "26f512d87334c169a57668a15d0a451d89edbb8463b8f99ae3006a04149cf5c6"
 metafile = true
 
 [[files]]
