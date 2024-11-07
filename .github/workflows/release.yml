@@ -49,7 +49,7 @@ jobs:
         id: cache
         with:
           path: web/public/icons
-          key: icons-${{ hashFiles('.gitmodules', 'pack/index.toml') }}
+          key: icons-${{ hashFiles('.gitmodules', 'pack/index.toml', 'dump/**/*.json') }}
           restore-keys: |
             icons-
 
