@@ -1,5 +1,14 @@
 import { createHash } from 'crypto'
-import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'fs'
+import {
+   createWriteStream,
+   existsSync,
+   mkdirSync,
+   readdirSync,
+   readFileSync,
+   rmSync,
+   statSync,
+   writeFileSync,
+} from 'fs'
 import { basename, dirname, join } from 'path'
 import { Readable } from 'stream'
 import { parse } from 'toml'
@@ -100,6 +109,8 @@ async function downloadMod(definition, dir) {
    }
 
    verifyFileSha(outPath, definition.download.hash)
+
+   return outPath
 }
 
 async function getModInfo(definition) {
@@ -165,15 +176,21 @@ async function installPack(from, to, options) {
 
    const index = readToml(join(packDir, pack.index.file))
 
+   const files = new Set()
+
    const results = await Promise.allSettled(
       index.files.map(async ({ file }) => {
          const definition = readToml(join(packDir, file))
 
-         await Promise.all([downloadMod(definition, dirname(file)), gatherInfo(definition, file)])
+         const [outFile] = await Promise.all([downloadMod(definition, dirname(file)), gatherInfo(definition, file)])
+
+         files.add(outFile)
       })
    )
 
    const errors = results.filter(it => it.status === 'rejected')
+
+   deleteOldFiles(files)
 
    console.groupEnd()
    console.log()
@@ -182,6 +199,26 @@ async function installPack(from, to, options) {
       errors.forEach(it => console.error(it.reason))
       throw new Error(`${errors.length} files failed to download`)
    }
+}
+
+function deleteOldFiles(keep, path = []) {
+   const dir = join(to, ...path)
+
+   const children = readdirSync(dir)
+      .map(name => ({ name, path: join(dir, name) }))
+      .map(it => ({ ...it, info: statSync(it.path) }))
+
+   const files = children.filter(it => it.info.isFile())
+   const dirs = children.filter(it => it.info.isDirectory())
+
+   dirs.forEach(it => deleteOldFiles(keep, [...path, it.name]))
+
+   files
+      .filter(file => !keep.has(file.path))
+      .forEach(file => {
+         console.log(`deleting ${file.name}`)
+         rmSync(file.path)
+      })
 }
 
 const args = process.argv.slice(2)

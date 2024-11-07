@@ -18,8 +18,8 @@ function parseDumps(from) {
    })
 }
 
-async function run(overwrite) {
-   const include = parseDumps('../dump')
+async function run(overwrite, include) {
+   if (!include?.length) include = parseDumps('../dump')
 
    await renderFrom(
       ['../resources', '../install/mods'],
@@ -30,9 +30,10 @@ async function run(overwrite) {
 
 const args = parseArgs({
    '--overwrite': Boolean,
+   '--include': [String],
 })
 
-run(args['--overwrite']).catch(e => {
+run(args['--overwrite'], args['--include']).catch(e => {
    console.error(e)
    process.exit(1)
 })
