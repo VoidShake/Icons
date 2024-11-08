@@ -82,7 +82,7 @@ metafile = true
 
 [[files]]
 file = "mods/dyetheworld.pw.toml"
-hash = "778ee0d72d2154b280de40ab0b1acb7b901707c813d85750bf950465003a4d48"
+hash = "d60743fa116fe46df9a704649381f62cb660d9ae8c523c4d033ce801917a21a3"
 metafile = true
 
 [[files]]

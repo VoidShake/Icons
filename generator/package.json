@@ -22,7 +22,7 @@
    },
    "homepage": "https://github.com/PssbleTrngle/PackResolver#readme",
    "dependencies": {
-      "@pssbletrngle/assets-renderer": "^1.5.1",
+      "@pssbletrngle/assets-renderer": "^1.5.3",
       "arg": "^5.0.2",
       "toml": "^3.0.0"
    },
