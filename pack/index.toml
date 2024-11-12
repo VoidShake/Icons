@@ -27,17 +27,17 @@ metafile = true
 
 [[files]]
 file = "mods/atmospheric.pw.toml"
-hash = "05c2d1900f63f0936782e1d075277717e13772e570cfbc83a0694b5a2c40bdd8"
+hash = "97385908aa948085c8b7c9ace6e42de7331359d1ad30fc8954918c65652a1259"
 metafile = true
 
 [[files]]
 file = "mods/autumnity.pw.toml"
-hash = "007f7d48eb00d80a9efb0b12443ea6ef2c70b0a761291b960f8c0c16f8aaf18a"
+hash = "ad9187e9de71c0259c492269a0bdf2959c98a86822bd8575678172620fabd0dd"
 metafile = true
 
 [[files]]
 file = "mods/biomes-o-plenty.pw.toml"
-hash = "be8b3536f870689eebcb5bc2676aa3cfe928fee1a5126fed3f1b4f959f18799d"
+hash = "33e828c63a098d971fb2b98cfa0f90bf96337d3a254afdc863463f4d62b57781"
 metafile = true
 
 [[files]]
@@ -62,7 +62,7 @@ metafile = true
 
 [[files]]
 file = "mods/compatoplenty.pw.toml"
-hash = "81e40ade2a76b329ac017081eff34b272863a58af71ed7b39577181a21c07d09"
+hash = "2a693955b7a91e8d3d666d80dcd5d4df465aa94025723c31146d7dec6c0e9c9a"
 metafile = true
 
 [[files]]
@@ -86,23 +86,18 @@ hash = "8b6863fabf0ff10e3e4eb5b2e5dca78fe0a3696366095ae5eb197aced7943b81"
 metafile = true
 
 [[files]]
-file = "mods/dyetheworld.pw.toml"
-hash = "d60743fa116fe46df9a704649381f62cb660d9ae8c523c4d033ce801917a21a3"
-metafile = true
-
-[[files]]
 file = "mods/ecologics.pw.toml"
-hash = "246e5c83cf88020693e4d327883a952507ab25c45c2ca3f813ce51a664896c98"
+hash = "2c947159a3c1922d90420fabce6c228b8cf6663498f7ffe592ac025e069730c5"
 metafile = true
 
 [[files]]
 file = "mods/endergetic.pw.toml"
-hash = "0d29c59d1bd5e7de33b96c0f6c1969afb1c05107211e5b628f92b2cc167f3c3c"
+hash = "e2bf3badfe12453a5c312b1067b9087d51c2aa1f9a10f773227c4b4dd8ed2e59"
 metafile = true
 
 [[files]]
 file = "mods/environmental.pw.toml"
-hash = "ee8f1090920e47d7e2a0d284256e864a8439feb8bf609bd09eb754c7efeb5dad"
+hash = "be95d31d53d261e6ab79defd7eebe5e47e31a0f93bd77977de704bc050488c32"
 metafile = true
 
 [[files]]
@@ -112,17 +107,12 @@ metafile = true
 
 [[files]]
 file = "mods/galosphere.pw.toml"
-hash = "23280086ea5b3d51cab41b09b024dc648bf03b606b39efb706b12c87f9a7077f"
+hash = "d0fe7e7d3d01d6cb3c77c7378cde51834ddb3a42da84e84ba2adc2716006db1b"
 metafile = true
 
 [[files]]
 file = "mods/ice-and-fire-dragons.pw.toml"
 hash = "d6691f5715dbd0e11f3628b6874636345cef9fce888c1c31444e0b4c56c4aa53"
-metafile = true
-
-[[files]]
-file = "mods/kotlin-for-forge.pw.toml"
-hash = "7ea985404ee4cc9082472c6869ec146309f526e395361b39f2f4c1a43506c41d"
 metafile = true
 
 [[files]]
@@ -137,7 +127,7 @@ metafile = true
 
 [[files]]
 file = "mods/neapolitan.pw.toml"
-hash = "1b9ed679e2cdd7f0b018165faf351af7ee9bb6b72beb696aefe99949fc7ea7c7"
+hash = "d01255f11201634a26e318142a28fe47705388c27d2c44e0bc3fd69593870a00"
 metafile = true
 
 [[files]]
@@ -162,7 +152,7 @@ metafile = true
 
 [[files]]
 file = "mods/the-twilight-forest.pw.toml"
-hash = "bed2d0203971bd48e287c406d3bc74817fe3ef7bf5803be489041c2a7e01317a"
+hash = "d1f859de9867b7433305aef1631aa22a436a4c3924474a21c0a22ab5f2093c04"
 metafile = true
 
 [[files]]
@@ -172,7 +162,7 @@ metafile = true
 
 [[files]]
 file = "mods/thermal-foundation.pw.toml"
-hash = "cfb43ee73a8c14095c49b5dd86bdab9ae3b7f65f0f33a2befd99195c658d6327"
+hash = "1fcb1bf91f4979cce47e56392cf9e3d30806bc0ff8aedc92b461272ecac8f8ca"
 metafile = true
 
 [[files]]
