@@ -1,0 +1,13 @@
+name = "Dye The World!"
+filename = "dye_the_world-1.0.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/naUMeOvG/versions/ApCBrZTx/dye_the_world-1.0.1.jar"
+hash-format = "sha512"
+hash = "6737d247c72f7506b12f9a351bfa5d2fe6bca91bb727d699edc4ae4d0f98357dfede3ea7184a1ed17dc83d01a3bd99db76342f7e22918ece8ead60d9ecce5212"
+
+[update]
+[update.modrinth]
+mod-id = "naUMeOvG"
+version = "ApCBrZTx"

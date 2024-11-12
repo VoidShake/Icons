@@ -81,6 +81,11 @@ hash = "8e1f1ee25a804f86e13b25ecc628ecac7192d147d2c035eefbe654fb76dc62f2"
 metafile = true
 
 [[files]]
+file = "mods/dye-the-world.pw.toml"
+hash = "8b6863fabf0ff10e3e4eb5b2e5dca78fe0a3696366095ae5eb197aced7943b81"
+metafile = true
+
+[[files]]
 file = "mods/dyetheworld.pw.toml"
 hash = "d60743fa116fe46df9a704649381f62cb660d9ae8c523c4d033ce801917a21a3"
 metafile = true
@@ -113,6 +118,11 @@ metafile = true
 [[files]]
 file = "mods/ice-and-fire-dragons.pw.toml"
 hash = "d6691f5715dbd0e11f3628b6874636345cef9fce888c1c31444e0b4c56c4aa53"
+metafile = true
+
+[[files]]
+file = "mods/kotlin-for-forge.pw.toml"
+hash = "7ea985404ee4cc9082472c6869ec146309f526e395361b39f2f4c1a43506c41d"
 metafile = true
 
 [[files]]
