@@ -1,13 +1,13 @@
 name = "Oreganized"
-filename = "Oreganized 1.20.1-3.1.1.jar"
+filename = "Oreganized 1.20.1-4.0.0.carcinogenious.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/2FJutzEL/versions/4VHzwYfC/Oreganized%201.20.1-3.1.1.jar"
+url = "https://cdn.modrinth.com/data/2FJutzEL/versions/jh3zJD7U/Oreganized%201.20.1-4.0.0.carcinogenious.jar"
 hash-format = "sha512"
-hash = "27c6f7d8e04eee4edb429c5a9480136dfc60b3917d179ee75e00548a0bd4b593ef3c582fad5231438aa3cbf7c45c5855e3445d2d8ea7cdf9427092a5aac5053f"
+hash = "3856dff01cf92da105f71251b2db4e177e40439ccc6c70e06de3cccb8a9a12e1320c3a7b5c1da43dea08c5e1e6c7a3062de03ee8bf3097d228adebe3eab090cc"
 
 [update]
 [update.modrinth]
 mod-id = "2FJutzEL"
-version = "4VHzwYfC"
+version = "jh3zJD7U"

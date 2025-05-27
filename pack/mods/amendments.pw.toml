@@ -1,13 +1,13 @@
 name = "Amendments"
-filename = "amendments-1.20-1.2.12.jar"
+filename = "amendments-1.20-1.2.19.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/6iTJugQR/versions/qE7sokDv/amendments-1.20-1.2.12.jar"
+url = "https://cdn.modrinth.com/data/6iTJugQR/versions/luR9kOmm/amendments-1.20-1.2.19.jar"
 hash-format = "sha512"
-hash = "89fc59fdf4e333ead7d8cccc175b9fe302746945491ea976f730aac3083b34edf424fe9c0159f6fb78d6adda74592b1469a3e08e64fe7644054a5d4e2a9c24ed"
+hash = "21ca276f72f0a1ca2e3c0d12c6cb49f3c07bf757e505f607e82eda65ff8ddc5a694edc6c0506fd95c526620087653e07b37e788cc4cfb02785987337b978ccce"
 
 [update]
 [update.modrinth]
 mod-id = "6iTJugQR"
-version = "qE7sokDv"
+version = "luR9kOmm"

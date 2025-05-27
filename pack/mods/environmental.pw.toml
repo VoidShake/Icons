@@ -1,13 +1,13 @@
 name = "Environmental"
-filename = "environmental-1.19.2-3.1.1.jar"
+filename = "environmental-1.20.1-4.0.1.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/OqtiAZcV/versions/LGP6wAh1/environmental-1.19.2-3.1.1.jar"
-hash-format = "sha1"
-hash = "0745d8f61828d35505a7f964d6097feef0a81b70"
+url = "https://cdn.modrinth.com/data/OqtiAZcV/versions/k7F41lm3/environmental-1.20.1-4.0.1.jar"
+hash-format = "sha512"
+hash = "f54e5c5116bf29810f461056188c76d8554c33909fcd4f2b53d3fc010bcd6d9317411580de09eae71a47edc8f031a268b88f48bde4590c3edf9fa06426010a91"
 
 [update]
 [update.modrinth]
 mod-id = "OqtiAZcV"
-version = "LGP6wAh1"
+version = "k7F41lm3"
