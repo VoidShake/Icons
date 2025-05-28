@@ -18,13 +18,14 @@ function readToml(path, missingMessage = `Unable to locate ${path}`) {
    const content = readFileSync(path).toString()
    return parse(content)
 }
+
 function verifyFileSha(file, checksum, format) {
    const content = readFileSync(file)
    const shasum = createHash(format)
    shasum.update(content)
    const actual = shasum.digest('hex')
    if (actual !== checksum) {
-      console.warn(`checksum does not match for ${name}: ${actual}`)
+      console.warn(`checksum does not match for ${file}: ${actual}`)
    }
 }
 
