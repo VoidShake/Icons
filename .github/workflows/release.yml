@@ -57,7 +57,7 @@ jobs:
         if: inputs.skipCache || steps.cache.outputs.cache-hit != 'true'
         run: pnpm run gen ${{ inputs.skipCache && '--overwrite' || '' }}
         env:
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
 
       - name: Upload generated data as artifact

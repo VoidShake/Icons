@@ -18,16 +18,13 @@ function readToml(path, missingMessage = `Unable to locate ${path}`) {
    const content = readFileSync(path).toString()
    return parse(content)
 }
-function verifyFileSha(file, checksum) {
+function verifyFileSha(file, checksum, format) {
    const content = readFileSync(file)
-   return verifySha(file, content, checksum)
-}
-
-function verifySha(name, content, checksum) {
-   const shasum = createHash('sha1')
+   const shasum = createHash(format)
    shasum.update(content)
-   if (shasum.digest('hex') !== checksum) {
-      console.warn(`checksum does not match for ${name}`)
+   const actual = shasum.digest('hex')
+   if (actual !== checksum) {
+      console.warn(`checksum does not match for ${name}: ${actual}`)
    }
 }
 
@@ -53,7 +50,7 @@ async function fetchFromModrinth(endpoint) {
 }
 
 async function fetchFromCurseforge(endpoint) {
-   const token = process.env.CURSEFORGE_TOKEN
+   const token = process.env.CURSEFORGE_API_TOKEN
 
    if (!token) throw new Error(`Unable to download from curseforge without passing a token`)
 
@@ -108,7 +105,7 @@ async function downloadMod(definition, dir) {
       console.log(`using cached file for ${outPath}`)
    }
 
-   verifyFileSha(outPath, definition.download.hash)
+   verifyFileSha(outPath, definition.download.hash, definition.download['hash-format'] || 'sha256')
 
    return outPath
 }
@@ -131,7 +128,7 @@ async function getModInfo(definition) {
    return null
 }
 
-async function gatherInfo(definition, file) {
+async function gatherInfo(definition, file, options) {
    const outDir = join('..', 'web', dirname(file))
 
    if (!existsSync(outDir)) {
@@ -142,7 +139,7 @@ async function gatherInfo(definition, file) {
    const name = base.substring(0, base.length - '.pw.toml'.length) + '.json'
    const out = join(outDir, name)
 
-   if (existsSync(out)) return
+   if (existsSync(out) && !options.includes('--overwrite')) return
 
    writeFileSync(
       out,
@@ -182,7 +179,10 @@ async function installPack(from, to, options) {
       index.files.map(async ({ file }) => {
          const definition = readToml(join(packDir, file))
 
-         const [outFile] = await Promise.all([downloadMod(definition, dirname(file)), gatherInfo(definition, file)])
+         const [outFile] = await Promise.all([
+            downloadMod(definition, dirname(file)),
+            gatherInfo(definition, file, options),
+         ])
 
          files.add(outFile)
       })
