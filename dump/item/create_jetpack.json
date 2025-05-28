@@ -1,0 +1,6 @@
+[
+  "create_jetpack:jetpack",
+  "create_jetpack:jetpack_placeable",
+  "create_jetpack:netherite_jetpack",
+  "create_jetpack:netherite_jetpack_placeable"
+]
